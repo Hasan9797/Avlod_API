@@ -9,19 +9,19 @@ const {
 const middlewareJWT = require("../middleware/jwt");
 const router = Router();
 
-//GET All staffs
+//GET All 
 router.get("/", getAllPartniors);
 
-// Get oneStaff from id
+// Get one from id
 router.get('/:id', getOnePartnior)
 
-// Add New Staff
+// Add New 
 router.post("/add", middlewareJWT, addNewPartnior);
 
-// Update Staff
+// Update 
 router.put("/:id", middlewareJWT, updatePartnior);
 
-//Delete Staff
+//Delete 
 router.delete("/:id", middlewareJWT, deletePartnior);
 
 module.exports = router;
