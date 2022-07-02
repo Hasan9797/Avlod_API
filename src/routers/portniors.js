@@ -6,7 +6,7 @@ const {
   updatePartnior,
   deletePartnior,
 } = require("../controllers/partniors");
-// const middlewareJWT = require("../middleware/jwt");
+const middlewareJWT = require("../middleware/jwt");
 const router = Router();
 
 //GET All staffs
@@ -16,12 +16,12 @@ router.get("/", getAllPartniors);
 router.get('/:id', getOnePartnior)
 
 // Add New Staff
-router.post("/add", addNewPartnior);
+router.post("/add", middlewareJWT, addNewPartnior);
 
 // Update Staff
-router.put("/:id", updatePartnior);
+router.put("/:id", middlewareJWT, updatePartnior);
 
 //Delete Staff
-router.delete("/:id", deletePartnior);
+router.delete("/:id", middlewareJWT, deletePartnior);
 
 module.exports = router;

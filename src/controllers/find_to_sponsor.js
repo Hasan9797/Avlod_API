@@ -30,8 +30,9 @@ const getLastReq = async (req, res) => {
 const addNewReq = async (req, res) => {
   try {
     const { file } = req.files;
+    const aplicationFilter = ["application/pdf", "application/doc", "application/docx"]
     const { first_name, last_name, email, phone_number } = req.body;
-    if(!file.mimetype.includes(["application/pdf"])){
+    if(!aplicationFilter.includes(file.mimetype)){
         return res
                 .status(400)
                 .send({

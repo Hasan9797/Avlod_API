@@ -1,14 +1,15 @@
-const {verify} = require("./jwtUtils");
+const { sign, verify } = require("./jwtUtils");
 const middlewareJWT = async (req, res, next) => {
   try {
-    let token = verify(req.headers.authorization);
-    if(token.userId !== 1 || req.headers['user-agent'] !== token.agent) return res.status(401).json({message: 'yoqooool'});
-
+    const token = sign({userId: 1})
+    // console.log(token);
+    let {userId, agent} = verify(req.headers.token);
+    if (userId !== 1)
+      return res.status(401).json({ message: "yoqooool" });
+    req.userId = userId
     next();
   } catch (error) {
-    return  res.status(401).json({message: 'yoqooool'});
+    return res.status(401).json({ message: "yoqooool" });
   }
 };
 module.exports = middlewareJWT;
-
-
